@@ -1,30 +1,30 @@
 import React, { useState } from "react";
-import TutorialDataService from "../services/TutorialService";
+import BlogService from "../services/BlogService";
 
-const AddTutorial = () => {
-  const initialTutorialState = {
+const AddBlog = () => {
+  const initialBlogState = {
     id: null,
     title: "",
     description: "",
     published: false
   };
-  const [tutorial, setTutorial] = useState(initialTutorialState);
+  const [blog, setBlog] = useState(initialBlogState);
   const [submitted, setSubmitted] = useState(false);
 
   const handleInputChange = event => {
     const { name, value } = event.target;
-    setTutorial({ ...tutorial, [name]: value });
+    setBlog({ ...blog, [name]: value });
   };
 
-  const saveTutorial = () => {
+  const saveBlog = () => {
     var data = {
-      title: tutorial.title,
-      description: tutorial.description
+      title: blog.title,
+      description: blog.description
     };
 
-    TutorialDataService.create(data)
+    BlogService.create(data)
       .then(response => {
-        setTutorial({
+        setBlog({
           id: response.data.id,
           title: response.data.title,
           description: response.data.description,
@@ -38,8 +38,8 @@ const AddTutorial = () => {
       });
   };
 
-  const newTutorial = () => {
-    setTutorial(initialTutorialState);
+  const newBlog = () => {
+    setBlog(initialBlogState);
     setSubmitted(false);
   };
 
@@ -48,7 +48,7 @@ const AddTutorial = () => {
       {submitted ? (
         <div>
           <h4>You submitted successfully!</h4>
-          <button className="btn btn-success" onClick={newTutorial}>
+          <button className="btn btn-success" onClick={newBlog}>
             Add
           </button>
         </div>
@@ -61,7 +61,7 @@ const AddTutorial = () => {
               className="form-control"
               id="title"
               required
-              value={tutorial.title}
+              value={blog.title}
               onChange={handleInputChange}
               name="title"
             />
@@ -74,13 +74,13 @@ const AddTutorial = () => {
               className="form-control"
               id="description"
               required
-              value={tutorial.description}
+              value={blog.description}
               onChange={handleInputChange}
               name="description"
             />
           </div>
 
-          <button onClick={saveTutorial} className="btn btn-success">
+          <button onClick={saveBlog} className="btn btn-success">
             Submit
           </button>
         </div>
@@ -89,4 +89,4 @@ const AddTutorial = () => {
   );
 };
 
-export default AddTutorial;
+export default AddBlog;
