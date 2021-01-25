@@ -21,7 +21,6 @@ const BlogsList = () => {
     BlogService.getAll()
       .then(response => {
         setBlogs(response.data);
-        console.log(response.data);
       })
       .catch(e => {
         console.log(e);
@@ -42,7 +41,6 @@ const BlogsList = () => {
   const removeAllBlogs = () => {
     BlogService.removeAll()
       .then(response => {
-        console.log(response.data);
         refreshList();
       })
       .catch(e => {
@@ -54,7 +52,6 @@ const BlogsList = () => {
     BlogService.findByTitle(searchTitle)
       .then(response => {
         setBlogs(response.data);
-        console.log(response.data);
       })
       .catch(e => {
         console.log(e);
@@ -84,7 +81,7 @@ const BlogsList = () => {
         </div>
       </div>
       <div className="col-md-6">
-        <h4>BLogs List</h4>
+        <h4>Blogs List</h4>
 
         <ul className="list-group">
           {blogs &&

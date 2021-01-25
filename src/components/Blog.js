@@ -15,7 +15,6 @@ const Blog = props => {
     BlogService.get(id)
       .then(response => {
         setCurrentBlog(response.data);
-        console.log(response.data);
       })
       .catch(e => {
         console.log(e);
@@ -42,7 +41,6 @@ const Blog = props => {
     BlogService.update(currentBlog.id, data)
       .then(response => {
         setCurrentBlog({ ...currentBlog, published: status });
-        console.log(response.data);
       })
       .catch(e => {
         console.log(e);
@@ -52,7 +50,6 @@ const Blog = props => {
   const updateBlog = () => {
     BlogService.update(currentBlog.id, currentBlog)
       .then(response => {
-        console.log(response.data);
         setMessage("The blog was updated successfully!");
       })
       .catch(e => {
@@ -63,7 +60,6 @@ const Blog = props => {
   const deleteBlog = () => {
     BlogService.remove(currentBlog.id)
       .then(response => {
-        console.log(response.data);
         props.history.push("/blogs");
       })
       .catch(e => {
